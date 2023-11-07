@@ -3,6 +3,11 @@ import styles from './PromptForm.module.css';
 
 const PromptForm = ({ isLoading, onSubmit }) => {
   const [prompt, setPrompt] = useState('');
+
+  const handleInputChange = (e) => {
+    setPrompt(e.target.value);
+  };
+
   return (
     <form
       onSubmit={(el) => {
@@ -20,7 +25,7 @@ const PromptForm = ({ isLoading, onSubmit }) => {
         className={styles.input}
         type='text'
         value={prompt}
-        onChange={(e) => setPrompt(e.target.value)}
+        onChange={handleInputChange}
       />
       <input type='submit' disabled={isLoading} className={styles.btn} />
     </form>
