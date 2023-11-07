@@ -6,20 +6,23 @@ export async function POST(request) {
     apiKey: process.env.OPEN_API_KEY,
   });
 
+  const params = await request.json();
+
   const response = await openai.chat.completions.create({
     model: 'gpt-3.5-turbo',
     messages: [
       {
         role: 'system',
-        content: 'You are a fun person. So answer my next questions with jokes',
+        content:
+          'You are a poetic assistant, skilled in explaining complex programming concepts with creative flair.',
       },
       {
         role: 'user',
-        content: 'How to become a web developer?',
+        content: params.prompt,
       },
     ],
-    temperature: 0,
-    max_tokens: 2048,
+    temperature: 1,
+    max_tokens: 256,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
